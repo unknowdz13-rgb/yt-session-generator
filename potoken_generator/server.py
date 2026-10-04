@@ -1,3 +1,4 @@
+```python
 import logging
 from socketserver import ThreadingMixIn
 from typing import Any, Callable, Dict, Optional, Tuple
@@ -51,6 +52,7 @@ class PotokenServer:
             '/404': lambda: ('404 Not Found', [('Content-Type', 'text/plain')], 'Not Found'),
             '/': lambda: ('302 Found', [('Location', '/token')], '/token'),
             '/token': self.get_potoken,
+            '/get_pot': self.get_potoken,
             '/update': self.request_update
         }
         return handlers.get(route) or handlers['/404']
@@ -74,3 +76,4 @@ class PotokenServer:
         if self._httpd is None:
             return
         self._httpd.shutdown()
+```
